@@ -107,8 +107,7 @@ echo "檢查編譯結果..."
 EXECUTABLES=(
     "OGCClothSimulation"
     "examples/BasicClothTest"
-    "examples/PerformanceTest"
-    "examples/OpenGLRenderTest"
+    "examples/SimplePerformanceTest"
 )
 
 ALL_SUCCESS=true
@@ -126,12 +125,12 @@ if [ "$ALL_SUCCESS" = true ]; then
     echo "🎉 編譯成功！"
     echo ""
     echo "運行程序:"
-    echo "  主程序:     ./OGCClothSimulation"
-    echo "  基本測試:   ./examples/BasicClothTest"
-    echo "  性能測試:   ./examples/PerformanceTest"
-    echo "  渲染測試:   ./examples/OpenGLRenderTest"
+    echo "  主程序:           ./OGCClothSimulation"
+    echo "  基本測試:         ./examples/BasicClothTest"
+    echo "  簡化性能測試:     ./examples/SimplePerformanceTest"
     echo ""
     echo "提示: 使用 './OGCClothSimulation' 啟動主程序"
+    echo "      主程序包含完整的 GUI 界面和 3D 可視化功能"
 else
     echo ""
     echo "❌ 編譯失敗，請檢查錯誤信息"
