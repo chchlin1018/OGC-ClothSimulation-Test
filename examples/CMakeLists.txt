@@ -9,6 +9,7 @@ add_executable(BasicClothTest
 
 target_link_libraries(BasicClothTest
     Qt6::Core
+    Qt6::Gui
     OpenGL::GL
 )
 
@@ -26,6 +27,7 @@ add_executable(PerformanceTest
 
 target_link_libraries(PerformanceTest
     Qt6::Core
+    Qt6::Gui
     OpenGL::GL
 )
 
@@ -44,6 +46,7 @@ add_executable(OpenGLRenderTest
 
 target_link_libraries(OpenGLRenderTest
     Qt6::Core
+    Qt6::Gui
     Qt6::Widgets
     Qt6::OpenGL
     Qt6::OpenGLWidgets

@@ -1,4 +1,5 @@
 #include "physics/ClothSimulation.h"
+#include "physics/OGCContactModel.h"
 #include <cmath>
 #include <algorithm>
 #include <QDebug>

@@ -19,7 +19,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(QT_FEATURE_vulkan OFF CACHE BOOL "Disable Vulkan support")
 
 # 尋找 Qt6 - 只包含我們需要的組件
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets OpenGL OpenGLWidgets)
 
 # 尋找 OpenGL
 find_package(OpenGL REQUIRED)
@@ -56,6 +56,7 @@ add_executable(OGCClothSimulation
 # 連結庫
 target_link_libraries(OGCClothSimulation
     Qt6::Core
+    Qt6::Gui
     Qt6::Widgets
     Qt6::OpenGL
     Qt6::OpenGLWidgets

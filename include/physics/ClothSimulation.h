@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <QVector3D>
+#include <QVector2D>
 #include <QMatrix4x4>
 
 namespace Physics {
@@ -68,33 +69,8 @@ public:
     QMatrix4x4 transform;
 };
 
-/**
- * @brief OGC 接觸模型實現
- */
-class OGCContactModel {
-public:
-    struct ContactInfo {
-        ClothParticle* particle;
-        QVector3D contactPoint;
-        QVector3D contactNormal;
-        float penetrationDepth;
-        float contactRadius;
-    };
-    
-    OGCContactModel(float contactRadius = 0.1f);
-    
-    void processContacts(const std::vector<ContactInfo>& contacts, float deltaTime);
-    void setContactRadius(float radius) { m_contactRadius = radius; }
-    float getContactRadius() const { return m_contactRadius; }
-    
-private:
-    float m_contactRadius;
-    float m_stiffness;
-    float m_damping;
-    
-    void applyOGCForce(const ContactInfo& contact, float deltaTime);
-    QVector3D calculateOffsetGeometry(const ContactInfo& contact);
-};
+// OGC 接觸模型前向聲明
+class OGCContactModel;
 
 /**
  * @brief 布料模擬主類別
