@@ -15,7 +15,10 @@ endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
-# 尋找 Qt6
+# 禁用不需要的 Qt6 功能以減少警告
+set(QT_FEATURE_vulkan OFF CACHE BOOL "Disable Vulkan support")
+
+# 尋找 Qt6 - 只包含我們需要的組件
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets)
 
 # 尋找 OpenGL

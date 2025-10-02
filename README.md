@@ -55,9 +55,20 @@ brew install cmake
 
 ### 2. 編譯項目
 
+#### 方法一：使用自動編譯腳本（推薦）
 ```bash
 # 克隆項目
-git clone https://github.com/yourusername/OGC-ClothSimulation-Test.git
+git clone https://github.com/chchlin1018/OGC-ClothSimulation-Test.git
+cd OGC-ClothSimulation-Test
+
+# 運行自動編譯腳本
+./build.sh
+```
+
+#### 方法二：手動編譯
+```bash
+# 克隆項目
+git clone https://github.com/chchlin1018/OGC-ClothSimulation-Test.git
 cd OGC-ClothSimulation-Test
 
 # 創建編譯目錄
@@ -69,6 +80,8 @@ cmake .. -DCMAKE_PREFIX_PATH=/opt/homebrew/lib/cmake/Qt6
 # 編譯
 make -j$(sysctl -n hw.ncpu)
 ```
+
+**注意**: 編譯過程中可能會出現 Vulkan 相關警告，這是正常的，不會影響編譯。詳見 [Vulkan 警告說明](docs/VULKAN_WARNING.md)。
 
 ### 3. 運行程序
 
