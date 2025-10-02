@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <sstream>
 #include "physics/ClothSimulation.h"
 
 /**
@@ -206,3 +207,5 @@ int main(int argc, char *argv[])
     
     return app.exec();
 }
+
+#include "performance_test.moc"

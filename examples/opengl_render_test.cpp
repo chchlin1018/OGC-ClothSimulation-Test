@@ -6,6 +6,9 @@
 #include <QLabel>
 #include <QTimer>
 #include <QDebug>
+#include <QStatusBar>
+#include <QFrame>
+#include <QKeyEvent>
 #include <memory>
 #include "ui/OpenGLWidget.h"
 #include "physics/ClothSimulation.h"
@@ -324,3 +327,5 @@ int main(int argc, char *argv[])
     
     return app.exec();
 }
+
+#include "opengl_render_test.moc"

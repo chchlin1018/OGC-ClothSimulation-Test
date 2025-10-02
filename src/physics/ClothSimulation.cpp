@@ -136,57 +136,6 @@ bool CylinderCollider::checkCollision(ClothParticle* particle, QVector3D& contac
 }
 
 // ============================================================================
-// OGCContactModel Implementation
-// ============================================================================
-
-OGCContactModel::OGCContactModel(float contactRadius)
-    : m_contactRadius(contactRadius)
-    , m_stiffness(1000.0f)
-    , m_damping(50.0f)
-{
-}
-
-void OGCContactModel::processContacts(const std::vector<ContactInfo>& contacts, float deltaTime) {
-    for (const auto& contact : contacts) {
-        applyOGCForce(contact, deltaTime);
-    }
-}
-
-void OGCContactModel::applyOGCForce(const ContactInfo& contact, float deltaTime) {
-    // OGC 核心演算法：偏移幾何接觸
-    QVector3D offsetGeometry = calculateOffsetGeometry(contact);
-    
-    // 計算接觸力
-    float penetration = std::max(0.0f, contact.penetrationDepth);
-    QVector3D contactForce = contact.contactNormal * (m_stiffness * penetration);
-    
-    // 添加阻尼
-    float normalVelocity = QVector3D::dotProduct(contact.particle->velocity, contact.contactNormal);
-    if (normalVelocity < 0) {  // 只在接近時添加阻尼
-        QVector3D dampingForce = contact.contactNormal * (m_damping * normalVelocity);
-        contactForce += dampingForce;
-    }
-    
-    // 應用力到粒子
-    contact.particle->addForce(contactForce);
-    
-    // OGC 特有的位置修正
-    if (penetration > 0) {
-        QVector3D positionCorrection = contact.contactNormal * (penetration * 0.8f);
-        if (!contact.particle->pinned) {
-            contact.particle->position += positionCorrection;
-        }
-    }
-}
-
-QVector3D OGCContactModel::calculateOffsetGeometry(const ContactInfo& contact) {
-    // OGC 偏移幾何計算
-    // 這是 OGC 模型的核心：使用接觸半徑創建偏移幾何
-    QVector3D offset = contact.contactNormal * m_contactRadius;
-    return contact.contactPoint + offset;
-}
-
-// ============================================================================
 // ClothSimulation Implementation
 // ============================================================================
 
