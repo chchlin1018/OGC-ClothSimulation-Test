@@ -324,5 +324,3 @@ int main(int argc, char *argv[])
     
     return app.exec();
 }
-
-#include "opengl_render_test.moc"

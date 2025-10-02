@@ -305,5 +305,3 @@ void OpenGLWidget::drawPoint(const QVector3D& position, float size) {
 }
 
 } // namespace UI
-
-#include "OpenGLWidget.moc"

@@ -367,5 +367,3 @@ void MainWindow::updateStatus() {
 }
 
 } // namespace UI
-
-#include "MainWindow.moc"

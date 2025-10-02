@@ -119,5 +119,3 @@ int main(int argc, char *argv[])
     
     return app.exec();
 }
-
-#include "basic_cloth_test.moc"
