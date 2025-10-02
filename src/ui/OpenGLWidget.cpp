@@ -3,6 +3,10 @@
 #include <QDebug>
 #include <cmath>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 #ifdef __APPLE__
 #include <OpenGL/gl3.h>
 #else

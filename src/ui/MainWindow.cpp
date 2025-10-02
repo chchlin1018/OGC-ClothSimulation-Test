@@ -3,6 +3,7 @@
 #include "physics/ClothSimulation.h"
 #include <QApplication>
 #include <QDebug>
+#include <QTime>
 
 namespace UI {
 
