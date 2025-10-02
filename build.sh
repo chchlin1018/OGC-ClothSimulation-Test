@@ -104,14 +104,27 @@ make -j$CPU_COUNT
 
 # 檢查編譯結果
 echo "檢查編譯結果..."
-EXECUTABLES=(
-    "OGCClothSimulation"
+
+# 檢查主程序 (可能是 Bundle 或普通可執行文件)
+MAIN_EXE_FOUND=false
+if [ -f "OGCClothSimulation" ]; then
+    echo "✓ OGCClothSimulation (可執行文件)"
+    MAIN_EXE_FOUND=true
+elif [ -f "OGCClothSimulation.app/Contents/MacOS/OGCClothSimulation" ]; then
+    echo "✓ OGCClothSimulation (macOS Bundle)"
+    MAIN_EXE_FOUND=true
+else
+    echo "✗ OGCClothSimulation (編譯失敗)"
+fi
+
+# 檢查範例程序
+EXAMPLES=(
     "examples/BasicClothTest"
     "examples/SimplePerformanceTest"
 )
 
-ALL_SUCCESS=true
-for exe in "${EXECUTABLES[@]}"; do
+ALL_SUCCESS=$MAIN_EXE_FOUND
+for exe in "${EXAMPLES[@]}"; do
     if [ -f "$exe" ]; then
         echo "✓ $exe"
     else
@@ -125,12 +138,16 @@ if [ "$ALL_SUCCESS" = true ]; then
     echo "🎉 編譯成功！"
     echo ""
     echo "運行程序:"
-    echo "  主程序:           ./OGCClothSimulation"
+    if [ -f "OGCClothSimulation" ]; then
+        echo "  主程序:           ./OGCClothSimulation"
+    elif [ -f "OGCClothSimulation.app/Contents/MacOS/OGCClothSimulation" ]; then
+        echo "  主程序:           open OGCClothSimulation.app"
+        echo "                    或 ./OGCClothSimulation.app/Contents/MacOS/OGCClothSimulation"
+    fi
     echo "  基本測試:         ./examples/BasicClothTest"
     echo "  簡化性能測試:     ./examples/SimplePerformanceTest"
     echo ""
-    echo "提示: 使用 './OGCClothSimulation' 啟動主程序"
-    echo "      主程序包含完整的 GUI 界面和 3D 可視化功能"
+    echo "提示: 主程序包含完整的 GUI 界面和 3D 可視化功能"
 else
     echo ""
     echo "❌ 編譯失敗，請檢查錯誤信息"
